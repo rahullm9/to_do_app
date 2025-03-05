@@ -1,51 +1,68 @@
 import React from "react";
 import "./Navbar.css";
-import {GiWhiteBook} from "react-icons/gi"
+import { GiWhiteBook } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div>   
+    <div>
       <nav className="navbar navbar-expand-lg">
         <div className="container">
-          <a className="navbar-brand" href="#">
-          <GiWhiteBook />
+          <Link className="navbar-brand" to="#">
+            <GiWhiteBook />
             <b>todo</b>
-          </a>
+          </Link>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item mx-2">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" to="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item mx-2">
-                <a className="nav-link active" aria-current="page" href="#">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="about"
+                >
                   About
-                </a>
+                </Link>
               </li>
               <li className="nav-item mx-2">
-                <a style={{color:"white"}} className="nav-link active btn-nav" aria-current="page" href="#">
+                <Link className="nav-link active" aria-current="page" to="todo">
+                  Todo
+                </Link>
+              </li>
+              <li className="nav-item mx-2">
+                <Link
+                  style={{ color: "white" }}
+                  className="nav-link active btn-nav"
+                  aria-current="page"
+                  to="signup"
+                >
                   Sign up
-                </a>
+                </Link>
               </li>
               <li className="nav-item mx-2">
-                <a style={{color:"white"}} className="nav-link active btn-nav" aria-current="page" href="#">
+                <Link
+                  style={{ color: "white" }}
+                  className="nav-link active btn-nav"
+                  aria-current="page"
+                  to="signin"
+                >
                   Sign in
-                </a>
+                </Link>
               </li>
               <li className="nav-item mx-2">
-                <a style={{color:"white"}} className="nav-link active btn-nav" aria-current="page" href="#">
+                <Link
+                  style={{ color: "white" }}
+                  className="nav-link active btn-nav"
+                  aria-current="page"
+                >
                   Logout
-                </a>
+                </Link>
               </li>
-              <li className="nav-item mx-2">
-                <a className="nav-link active" aria-current="page" href="#">
-                  <img className="user-icon" src="https://img.icons8.com/android/48/user.png" alt="" />
-                </a>
-              </li>
-              
             </ul>
-            
           </div>
         </div>
       </nav>
