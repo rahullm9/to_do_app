@@ -5,7 +5,7 @@ import Home from "./compo/home/Home";
 import Footer from "./compo/footer/Footer";
 import About from "./compo/about/About";
 import Todo from "./compo/todo/Todo";
-import Signin from "./compo/signin/signin";
+import Signin from "./compo/signup/signin";
 import Signup from "./compo/signup/signup";
 
 

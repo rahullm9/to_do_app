@@ -1,0 +1,27 @@
+.signup{
+    width: 100%;
+    height: 100vh;
+}
+
+.column{
+    height: 100vh;
+}
+
+.sign-up-heading{
+    font-size: 100px;
+    color: #9845f7;
+}
+
+.username, .email, .password{
+    margin-bottom: 20px;
+    outline: none;
+    opacity: 0.6;
+}
+
+
+.btn-signup{
+    background-color: #9845f7;
+    color: white;
+    border: none;
+    height: 40px;
+}

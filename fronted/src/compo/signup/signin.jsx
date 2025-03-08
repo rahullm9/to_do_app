@@ -1,28 +1,28 @@
-import React from "react";
-import "./signup.css";
+import React from 'react'
 import Headcomp from "./headcomp";
 
-const signup = () => {
+const signin = () => {
   return (
-    <div className="signup">
+    <div>
       <div className="container">
         <div className="row">
+          <div className="col-left column col-lg-4 d-flex justify-content-center align-items-center">
+          <Headcomp first="Sign" second="In"/>
+          </div>
+
           <div className="col-lg-8 column d-flex justify-content-center align-items-center">
             <div className="signup-form d-flex flex-column w-100 p-5 ">
-              <input type="text" className="username" placeholder='Enter username'/>
+              <input type="text" className="username" placeholder='Enter username' />
               <input type="email" className="email" placeholder='Enter Email' />
-              <input type="password" className="password" placeholder='Enter Enter password' />
+              <input type="password" className="password" placeholder='Enter password' />
               <button className="btn-signup p-2 ">Sign Up</button>
             </div>
           </div>
 
-          <div className="col-left column col-lg-4 d-flex justify-content-center align-items-center">
-            <Headcomp first="Sign" second="Up"/>
-          </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default signup;
+export default signin
