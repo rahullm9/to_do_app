@@ -5,4 +5,8 @@
 
 .home-btn{
     border: none;
+    background-color: #9845f7;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
 }
