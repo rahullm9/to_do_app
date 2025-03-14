@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import "./Todo.css";
-import "../home/Home.css"
+import "../home/Home.css";
 
 const Todo = () => {
   const [showTextarea, setShowTextarea] = useState(false);
-
+  const [Inputs, setInputs] = useState({ title: "", body: "" });
   const show = () => {
     setShowTextarea(true);
   };
 
-  const change = () => {
+  const change = (e) => {
+    const { name, value } = e.target;
+    setInputs({ ...Inputs, [name]: value });
+  };
 
-  }
+  const submit = () => {
+    console.log(Inputs);
+  };
 
   return (
     <div className="todo container">
@@ -24,6 +29,7 @@ const Todo = () => {
             onClick={show}
             onChange={change}
             name="title"
+            value={Inputs.title}
           />
           {showTextarea && (
             <textarea
@@ -32,12 +38,24 @@ const Todo = () => {
               id="textarea"
               placeholder="Body"
               onChange={change}
+              value={Inputs.body}
             />
           )}
         </div>
 
         <div className="w-50 d-flex justify-content-end my-2">
-          <button className="home-btn p-2">add</button>
+          <button className="home-btn p-2" onClick={submit}>
+            add
+          </button>
+        </div>
+      </div>
+      <div className="card" style={{ width: "18rem" }}>
+        <div className="card-body">
+          <h5 className="card-title">Task</h5>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
         </div>
       </div>
     </div>
