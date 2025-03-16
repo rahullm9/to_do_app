@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./Todo.css";
 import "../home/Home.css";
+import TodoCard from './todocard'
 
 const Todo = () => {
   const [showTextarea, setShowTextarea] = useState(false);
   const [Inputs, setInputs] = useState({ title: "", body: "" });
+  const [Array, setArray] = useState([]);
   const show = () => {
     setShowTextarea(true);
   };
@@ -15,6 +17,8 @@ const Todo = () => {
   };
 
   const submit = () => {
+    setArray([...Array, Inputs]);
+    setInputs({title: "", body: ""});
     console.log(Inputs);
   };
 
@@ -49,13 +53,12 @@ const Todo = () => {
           </button>
         </div>
       </div>
-      <div className="card" style={{ width: "18rem" }}>
-        <div className="card-body">
-          <h5 className="card-title">Task</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+      <div className="todo-body">
+        <div className="container">
+        {Array && Array.map ((item, index) => <>
+          <TodoCard />
+        </>
+        )}
         </div>
       </div>
     </div>

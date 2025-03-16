@@ -5,7 +5,7 @@ const auth = require("./routes/auth");
 const list = require("./routes/list");
 
 app.get('/', function (req, res){
-    res.send("Hello worldd");
+    // res.send("Hello worldd");
 })
 
 app.use(express.json());
