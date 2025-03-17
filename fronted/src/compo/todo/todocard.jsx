@@ -3,7 +3,7 @@ import "./Todo.css";
 import { MdDelete } from "react-icons/md";
 import { MdEditSquare } from "react-icons/md";
 
-const todocard = ({ title, body, id }) => {
+const todocard = ({ title, body, id, delid }) => {
   return (
     <div className="p-3 todo-card">
       <div>
@@ -16,7 +16,7 @@ const todocard = ({ title, body, id }) => {
           <div
             className="d-flex align-item-center card-icon-head px-2 py-1 text-danger"
             onClick={() => {
-              console.log(id);
+              delid(id);
             }}
           >
             <MdDelete className="todo-card-icon del" />

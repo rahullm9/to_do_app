@@ -22,6 +22,11 @@ const Todo = () => {
     console.log(Inputs);
   };
 
+  const del = (id) => {
+    Array.splice(id, "1");
+    setArray([...Array])
+  };
+
   return (
     <div className="todo container-fluid">
       <div className="todo-main d-flex flex-column justify-content-center align-items-center my-4">
@@ -59,7 +64,12 @@ const Todo = () => {
             {Array &&
               Array.map((item, index) => (
                 <div className="col-lg-3 col-8 mx-5 my-2" key={index}>
-                  <TodoCard title={item.title} body={item.body} id={index} />
+                  <TodoCard
+                    title={item.title}
+                    body={item.body}
+                    id={index}
+                    delid={del}
+                  />
                 </div>
               ))}
           </div>
