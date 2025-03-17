@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Todo.css";
 import "../home/Home.css";
-import TodoCard from './todocard'
+import TodoCard from "./todocard";
 
 const Todo = () => {
   const [showTextarea, setShowTextarea] = useState(false);
@@ -18,12 +18,12 @@ const Todo = () => {
 
   const submit = () => {
     setArray([...Array, Inputs]);
-    setInputs({title: "", body: ""});
+    setInputs({ title: "", body: "" });
     console.log(Inputs);
   };
 
   return (
-    <div className="todo container">
+    <div className="todo container-fluid">
       <div className="todo-main d-flex flex-column justify-content-center align-items-center my-4">
         <div className="d-flex flex-column w-50 todo-input-div p-3">
           <input
@@ -54,11 +54,15 @@ const Todo = () => {
         </div>
       </div>
       <div className="todo-body">
-        <div className="container">
-        {Array && Array.map ((item, index) => <>
-          <TodoCard />
-        </>
-        )}
+        <div className="container-fluid">
+          <div className=" row">
+            {Array &&
+              Array.map((item, index) => (
+                <div className="col-lg-3 col-1 mx-5 my-2">
+                  <TodoCard title={item.title} body={item.body} />
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </div>

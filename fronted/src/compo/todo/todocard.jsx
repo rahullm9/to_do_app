@@ -1,11 +1,23 @@
-import React from 'react'
+import React from "react";
+import './Todo.css'
+import { MdDelete } from "react-icons/md";
+import { MdEditSquare } from "react-icons/md";
 
-const todocard = () => {
+const todocard = ({title, body}) => {
   return (
-    <div>
-      Todocard
+    <div className="p-3 todo-card">
+      <div>
+        <h5>{title}</h5>
+        <p className="todo-card-p">
+          {body.split("", 77)}...
+        </p>
+        <div className=" d-flex justify-content-around">
+          <div ><MdEditSquare className="todo-card-icon" /> Update</div>
+          <div ><MdDelete className="todo-card-icon del" /> Delete</div>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default todocard
+export default todocard;

@@ -15,3 +15,20 @@
     outline: none;
 }
 
+.todo-card-p{
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.todo-card{
+    border: 1px solid black;
+}
+.todo-card-icon{
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.del{
+    color: rgba(240, 0, 0, 0.87);
+}
+
