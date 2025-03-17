@@ -32,3 +32,6 @@
     color: rgba(240, 0, 0, 0.87);
 }
 
+.card-icon-head{
+    cursor: pointer;
+}

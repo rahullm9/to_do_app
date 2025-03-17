@@ -58,8 +58,8 @@ const Todo = () => {
           <div className=" row">
             {Array &&
               Array.map((item, index) => (
-                <div className="col-lg-3 col-1 mx-5 my-2">
-                  <TodoCard title={item.title} body={item.body} />
+                <div className="col-lg-3 col-8 mx-5 my-2" key={index}>
+                  <TodoCard title={item.title} body={item.body} id={index} />
                 </div>
               ))}
           </div>
