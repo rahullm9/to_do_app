@@ -34,6 +34,12 @@ const Todo = () => {
     setArray([...Array]);
   };
 
+  const dis = (value) => {
+    console.log(value);
+    document.getElementById("todo-update").style.display= "block";
+    
+  };
+
   return (
     <div>
       <div className="todo container-fluid">
@@ -85,7 +91,7 @@ const Todo = () => {
           </div>
         </div>
       </div>
-      <div className="todo-update bg-success">
+      <div className="todo-update bg-success" id="todo-update">
         <div className="update container">
           <Update />
         </div>
