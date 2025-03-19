@@ -34,9 +34,9 @@ const Todo = () => {
     setArray([...Array]);
   };
 
-  const dis = (value) => {
+  const dis = (value) => { 
     console.log(value);
-    document.getElementById("todo-update").style.display= "block";
+    document.getElementById("todo-update").style.display= value;
     
   };
 
@@ -84,6 +84,7 @@ const Todo = () => {
                       body={item.body}
                       id={index}
                       delid={del}
+                      display={dis}
                     />
                   </div>
                 ))}
@@ -93,7 +94,7 @@ const Todo = () => {
       </div>
       <div className="todo-update bg-success" id="todo-update">
         <div className="update container">
-          <Update />
+          <Update display={dis} />
         </div>
       </div>
     </div>
