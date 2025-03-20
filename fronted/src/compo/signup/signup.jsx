@@ -1,10 +1,13 @@
 import React from "react";
 import "./signup.css";
 import Headcomp from "./headcomp";
-import {useState} from "react";
+import { useState } from "react";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const Signup = () => {
-  const [ Inputs, setInputs ] = useState({
+  const history = useNavigate();
+  const [Inputs, setInputs] = useState({
     email: "",
     username: "",
     password: "",
@@ -13,15 +16,23 @@ const Signup = () => {
     const { name, value } = e.target;
     setInputs({ ...Inputs, [name]: value });
   };
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-
-    console.log(Inputs);
-    setInputs({
-      email: "",
-      username: "",
-      password: "",
-    });
+    await axios
+      .post("http://localhost:3000/api/v1/register", Inputs)
+      .then((response) => {
+        if(response.data.message === "User already exists"){
+          alert(response.data.message);
+        }else{
+          alert(response.data.message);
+          setInputs({
+            email: "",
+            username: "",
+            password: "",
+          });
+          history("/signin");
+        }
+      });
   };
   return (
     <div className="signup">
@@ -49,8 +60,8 @@ const Signup = () => {
                 type="password"
                 className="password"
                 placeholder="Enter password"
-                name="password"
                 onChange={change}
+                name="password"
                 value={Inputs.password}
               />
               <button className="btn-signup p-2 " onClick={submit}>

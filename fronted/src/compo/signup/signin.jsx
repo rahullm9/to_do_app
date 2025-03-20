@@ -1,7 +1,39 @@
 import React from "react";
 import Headcomp from "./headcomp";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const signin = () => {
+const Signin = () => {
+  const history = useNavigate();
+  const [Inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+
+  const change = (e) => {
+    const { name, value } = e.target;
+    setInputs({ ...Inputs, [name]: value });
+  };
+
+  const submit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log("hello");
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/login",
+        Inputs
+      );
+      console.log(response);
+      
+      setTimeout(() => {
+        history("/todo");
+      }, 500);
+    } catch (error) {
+      console.error("Login Error:", error.response?.data || error.message);
+    }
+  };
+
   return (
     <div>
       <div className="container">
@@ -13,17 +45,25 @@ const signin = () => {
           <div className="col-lg-8 column d-flex justify-content-center align-items-center">
             <div className="signup-form d-flex flex-column w-100 p-5 ">
               <input
-                type="text"
-                className="username"
-                placeholder="Enter username or Email"
+                type="email"
+                className="email"
+                placeholder="Enter Email"
+                name="email"
+                value={Inputs.email}
+                onChange={change}
               />
 
               <input
                 type="password"
                 className="password"
                 placeholder="Enter password"
+                name="password"
+                value={Inputs.password}
+                onChange={change}
               />
-              <button className="btn-signup p-2 ">Sign In</button>
+              <button className="btn-signup p-2 " onClick={submit}>
+                Sign In
+              </button>
             </div>
           </div>
         </div>
@@ -32,4 +72,4 @@ const signin = () => {
   );
 };
 
-export default signin;
+export default Signin;

@@ -2,8 +2,12 @@ import React from "react";
 import "./Navbar.css";
 import { GiWhiteBook } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  console.log(isLoggedIn);
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
@@ -33,35 +37,43 @@ const Navbar = () => {
                   Todo
                 </Link>
               </li>
-              <li className="nav-item mx-2">
-                <Link
-                  style={{ color: "white" }}
-                  className="nav-link active btn-nav"
-                  aria-current="page"
-                  to="signup"
-                >
-                  Sign up
-                </Link>
-              </li>
-              <li className="nav-item mx-2">
-                <Link
-                  style={{ color: "white" }}
-                  className="nav-link active btn-nav"
-                  aria-current="page"
-                  to="signin"
-                >
-                  Sign in
-                </Link>
-              </li>
-              <li className="nav-item mx-2">
-                <Link
-                  style={{ color: "white" }}
-                  className="nav-link active btn-nav"
-                  aria-current="page"
-                >
-                  Logout
-                </Link>
-              </li>
+              {!isLoggedIn && (
+                <>
+                  <li className="nav-item mx-2">
+                    <Link
+                      style={{ color: "white" }}
+                      className="nav-link active btn-nav"
+                      aria-current="page"
+                      to="signup"
+                    >
+                      Sign up
+                    </Link>
+                  </li>
+                  <li className="nav-item mx-2">
+                    <Link
+                      style={{ color: "white" }}
+                      className="nav-link active btn-nav"
+                      aria-current="page"
+                      to="signin"
+                    >
+                      Sign in
+                    </Link>
+                  </li>
+                </>
+              )}
+              {isLoggedIn && (
+                <>
+                  <li className="nav-item mx-2">
+                    <Link
+                      style={{ color: "white" }}
+                      className="nav-link active btn-nav"
+                      aria-current="page"
+                    >
+                      Logout
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
