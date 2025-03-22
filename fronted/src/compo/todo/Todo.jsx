@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Todo.css";
 import "../home/Home.css";
 import TodoCard from "./todocard";
 import { ToastContainer, toast } from "react-toastify";
 import Update from "./update";
-
+// import { useDispatch } from "react-redux";
+// import { authActions } from "../../store";
+import axios from "axios";
+let id = sessionStorage.getItem("id");
+let toUpdateArray = [];
 
 const Todo = () => {
   const [showTextarea, setShowTextarea] = useState(false);
@@ -19,27 +23,62 @@ const Todo = () => {
     setInputs({ ...Inputs, [name]: value });
   };
 
-  const submit = () => {
+  const submit = async () => {
     if (Inputs.title === "" && Inputs.body === "") {
       toast.error("Title and body should not empty !");
     } else {
-      setArray([...Array, Inputs]);
-      setInputs({ title: "", body: "" });
-      toast.success("Your task is added");
-      toast.error("Your task is not saved ! Please SignUP");
+      if (id) {
+        await axios.post("http://localhost:3000/api/v2/addtask", {
+          title: Inputs.title,
+          body: Inputs.body,
+          id: id,
+        });
+        setInputs({ title: "", body: "" });
+        toast.success("Your task is added");
+      } else {
+        setArray([...Array, Inputs]);
+        setInputs({ title: "", body: "" });
+        toast.success("Your task is added");
+        toast.error("Your task is not saved ! Please SignUP");
+      }
     }
   };
 
-  const del = (id) => {
-    Array.splice(id, "1");
-    setArray([...Array]);
+  const del = async (Cardid) => {
+    if (id) {
+      await axios
+        .delete(`http://localhost:3000/api/v2/deletetask/${Cardid}`, {
+          data: { id: id },
+        })
+        .then(() => {
+          toast.success("Deleted successfully");
+        });
+    } else {
+      toast.error("First you have to SignUp");
+    }
   };
 
-  const dis = (value) => { 
+  const dis = (value) => {
     console.log(value);
-    document.getElementById("todo-update").style.display= value;
-    
+    document.getElementById("todo-update").style.display = value;
   };
+  const update = (value) => {
+    toUpdateArray = Array[value];
+  };
+  useEffect(() => {
+    if (id) {
+      const fetchData = async () => {
+        await axios
+          .get(`http://localhost:3000/api/v2/gettask/${id}`)
+          .then((response) => {
+            setArray(response.data.list);
+          });
+      };
+      fetchData();
+    } else {
+      toast.error("First you have to SignUp");
+    }
+  }, [submit]);
 
   return (
     <div>
@@ -83,9 +122,11 @@ const Todo = () => {
                     <TodoCard
                       title={item.title}
                       body={item.body}
-                      id={index}
+                      id={item._id}
                       delid={del}
                       display={dis}
+                      updateId={index}
+                      toBeUpdate={update}
                     />
                   </div>
                 ))}
@@ -95,7 +136,7 @@ const Todo = () => {
       </div>
       <div className="todo-update bg-success" id="todo-update">
         <div className="update container">
-          <Update display={dis} />
+          <Update display={dis} update={toUpdateArray} />
         </div>
       </div>
     </div>

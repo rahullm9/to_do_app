@@ -25,7 +25,6 @@ router.post("/login", async (req, res) => {
   
       const passwordMatch = await bcrypt.compare(req.body.password, user.password);
       if (passwordMatch) {
-      
         const { password, ...userData } = user._doc;
         return res.status(200).json({ data: userData });
       } else {

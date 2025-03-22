@@ -3,11 +3,17 @@ import "./Navbar.css";
 import { GiWhiteBook } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store"
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  console.log(isLoggedIn);
 
+  const dispatch = useDispatch();
+  const logout = () => {
+    sessionStorage.clear("id");
+    dispatch(authActions.logout());
+  }
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
@@ -63,7 +69,7 @@ const Navbar = () => {
               )}
               {isLoggedIn && (
                 <>
-                  <li className="nav-item mx-2">
+                  <li className="nav-item mx-2" onClick={logout}>
                     <Link
                       style={{ color: "white" }}
                       className="nav-link active btn-nav"

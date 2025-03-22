@@ -3,8 +3,11 @@ import Headcomp from "./headcomp";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store"
 
 const Signin = () => {
+  const dispatch = useDispatch();
   const history = useNavigate();
   const [Inputs, setInputs] = useState({
     email: "",
@@ -19,16 +22,13 @@ const Signin = () => {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      console.log("hello");
       const response = await axios.post(
         "http://localhost:3000/api/v1/login",
         Inputs
       );
-      console.log(response);
-      
-      setTimeout(() => {
-        history("/todo");
-      }, 500);
+      sessionStorage.setItem("id", response.data.data._id);
+      dispatch(authActions.login());
+      history("/todo");
     } catch (error) {
       console.error("Login Error:", error.response?.data || error.message);
     }
