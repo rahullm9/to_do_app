@@ -75,9 +75,7 @@ const Todo = () => {
           });
       };
       fetchData();
-    } else {
-      toast.error("First you have to SignUp");
-    }
+    } 
   }, [submit]);
 
   return (
