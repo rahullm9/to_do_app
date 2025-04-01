@@ -28,7 +28,7 @@ const Todo = () => {
       toast.error("Title and body should not empty !");
     } else {
       if (id) {
-        await axios.post("http://localhost:3000/api/v2/addtask", {
+        await axios.post(`${window.location.origin}/api/v2/addtask`, {
           title: Inputs.title,
           body: Inputs.body,
           id: id,
@@ -47,7 +47,7 @@ const Todo = () => {
   const del = async (Cardid) => {
     if (id) {
       await axios
-        .delete(`http://localhost:3000/api/v2/deletetask/${Cardid}`, {
+        .delete(`${window.location.origin}/api/v2/deletetask/${Cardid}`, {
           data: { id: id },
         })
         .then(() => {
@@ -69,7 +69,7 @@ const Todo = () => {
     if (id) {
       const fetchData = async () => {
         await axios
-          .get(`http://localhost:3000/api/v2/gettask/${id}`)
+          .get(`${window.location.origin}/api/v2/gettask/${id}`)
           .then((response) => {
             setArray(response.data.list);
           });
